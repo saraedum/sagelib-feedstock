@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 export LD_LIBRARY_PATH="$PREFIX/lib:$LD_LIBRARY_PATH"
 export CFLAGS="-w $CFLAGS"
@@ -15,8 +16,9 @@ export SAGE_EXTCODE="$SAGE_SHARE/sage/ext"
 export SAGE_SPKG_INST="$SAGE_LOCAL/var/lib/sage/installed"
 export SAGE_DOC="$SAGE_SHARE/doc/sage"
 
+rm -f local
 ln -s "$PREFIX" local
-export SAGE_NUM_THREADS=2
+export SAGE_NUM_THREADS=${CPU_COUNT}
 
 cd src
 # move the scripts
